@@ -6,6 +6,7 @@ import { SheetCanvas } from '../SheetCanvas/SheetCanvas';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
 import { ScoreCard } from '../ScoreCard/ScoreCard';
 import { ComparisonModal } from '../ComparisonModal/ComparisonModal';
+import { MinimalistToolPalette } from '../MinimalistToolPalette/MinimalistToolPalette';
 import { useNestStore } from '../../state/useNestStore';
 
 export const NestWorkspaceView: React.FC = () => {
@@ -54,12 +55,15 @@ export const NestWorkspaceView: React.FC = () => {
 
   return (
     <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-[#07090e]">
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative">
         {/* Left Parts Library Panel */}
         <PartsPanel />
 
         {/* Center Sheet Canvas Renderer */}
         <SheetCanvas />
+
+        {/* Floating Minimalist Quick Action Dock */}
+        <MinimalistToolPalette />
 
         {/* Right Settings Parameters Panel */}
         <SettingsPanel />
