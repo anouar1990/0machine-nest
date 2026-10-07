@@ -65,10 +65,12 @@ export function generateCandidatePositions(
     }
   };
 
-  // 1. Initial Top-Left Margin Candidate
+  // 1. Initial Sheet Corner Candidates
   addCandidate(margin, margin);
+  addCandidate(sheet.width - margin - partWidth, margin);
+  addCandidate(margin, sheet.height - margin - partHeight);
 
-  // 2. Candidates derived from placed parts bounding boxes & spacing
+  // 2. Candidates derived from placed parts boundaries & alignment offsets
   placedParts.forEach((placed) => {
     const pBounds = placed.geometry.bounds;
     const px = placed.position.x;
@@ -79,18 +81,25 @@ export function generateCandidatePositions(
     // Right of placed part
     addCandidate(px + pw + spacing, py);
     addCandidate(px + pw + spacing, margin);
+    addCandidate(px + pw + spacing, py + ph - partHeight);
 
     // Below placed part
     addCandidate(px, py + ph + spacing);
     addCandidate(margin, py + ph + spacing);
+    addCandidate(px + pw - partWidth, py + ph + spacing);
 
     // Diagonal corner of placed part
     addCandidate(px + pw + spacing, py + ph + spacing);
+
+    // Align left/top with placed part
+    addCandidate(px, margin);
+    addCandidate(margin, py);
   });
 
-  // 3. Grid-sampled candidates for gap filling
-  for (let y = margin; y <= sheet.height - margin - partHeight; y += stepMm * 2) {
-    for (let x = margin; x <= sheet.width - margin - partWidth; x += stepMm * 2) {
+  // 3. Coarse Sampling for gaps (25mm step)
+  const coarseStep = 25;
+  for (let y = margin; y <= sheet.height - margin - partHeight; y += coarseStep) {
+    for (let x = margin; x <= sheet.width - margin - partWidth; x += coarseStep) {
       addCandidate(x, y);
     }
   }
