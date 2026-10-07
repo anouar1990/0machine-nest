@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { useNestStore } from '../../state/useNestStore';
 import { checkSheetCollision, checkPartCollision, getAbsolutePartContours } from '../../nesting/collision';
 import { Lock, Plus, AlertTriangle, Layers3 } from 'lucide-react';
+import { MinimalistToolPalette } from '../MinimalistToolPalette/MinimalistToolPalette';
 
 export const SheetCanvas: React.FC = () => {
   const {
@@ -371,6 +372,9 @@ export const SheetCanvas: React.FC = () => {
             </svg>
           </div>
         </div>
+
+        {/* Minimalist Quick Action Dock */}
+        <MinimalistToolPalette />
       </div>
     </div>
   );

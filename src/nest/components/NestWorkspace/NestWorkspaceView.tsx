@@ -62,9 +62,6 @@ export const NestWorkspaceView: React.FC = () => {
         {/* Center Sheet Canvas Renderer */}
         <SheetCanvas />
 
-        {/* Floating Minimalist Quick Action Dock */}
-        <MinimalistToolPalette />
-
         {/* Right Settings Parameters Panel */}
         <SettingsPanel />
       </div>

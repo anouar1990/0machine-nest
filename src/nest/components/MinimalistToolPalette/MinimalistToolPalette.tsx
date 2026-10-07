@@ -63,7 +63,7 @@ export const MinimalistToolPalette: React.FC = () => {
   };
 
   return (
-    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center select-none animate-in slide-in-from-bottom-4 duration-200">
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center select-none animate-in slide-in-from-bottom-4 duration-200 pointer-events-auto max-w-[95vw]">
       {/* Hidden File Input */}
       <input
         ref={fileInputRef}
